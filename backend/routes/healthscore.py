@@ -1,5 +1,4 @@
 from fastapi import APIRouter, status, Response, HTTPException, Depends, BackgroundTasks
-from config.db import conn
 from schemas.user import User
 from datetime import datetime, date
 import platform
@@ -13,8 +12,9 @@ from typing import List, Tuple, Set, Dict
 from typing import Optional
 import json
 from tabulate import tabulate
-from config.oauth2 import get_current_user
 
+
+#Redis
 from config.redisdb import redis_db
 my_redis = redis_db()
 
@@ -24,11 +24,16 @@ from config.db import get_db
 import asyncio
 
 
-# Import the Class
-from config.profiler import profiler
-
 # Create a new instance of simple profiler
+from config.profiler import profiler
 my_profiler = profiler()
+
+
+# postgre
+from config.db import get_db
+from models.dbschema import ExceptionMessage
+from sqlalchemy.orm import Session
+from models.dbschema import *
 
 
 healthscore = APIRouter(
@@ -39,8 +44,7 @@ healthscore = APIRouter(
 saftey_stock : int
 stock: int
 avg_stock_change: float
-#list_qty = []
-#list_qty_instance = []  # This is a global
+
 
 
 # This function constructs an individual instances of total Quantity fields
@@ -105,12 +109,10 @@ def find_total_quantity_summary(formatted_date: str, material_id: str,
     return list_qty
 
 
+
 # This function is to find stock
 def find_stock(date: str, formatted_date: str, material_id: str, data:pd.DataFrame()) -> int:
             
-    #sql = """SELECT mrp_element, total_quantity, demand_date  FROM admin.MD04 WHERE material = %s AND demand_date = %s""" 
-    #data = pd.DataFrame(conn.execute(sql, material_id, formatted_date).fetchall())
-    
     # Data is not available in DB
     if(len(data) == 0):
         print("No data found for", formatted_date)
@@ -162,25 +164,13 @@ def sigmoid(SS: int, k: float) -> float:
 
 
 
-    # async def get_material_healthscore(
-    #             planner_id:str, 
-    #             material_id: str, 
-    #             healthdate: str, 
-    #             background_tasks: BackgroundTasks,
-    #             session: Session = Depends(get_db),
-    #             user_id: int = Depends(get_current_user) ):
-
 @healthscore.get('/{planner_id}/{material_id}', status_code = status.HTTP_200_OK)
-async def get_material_healthscore(
-            planner_id:str, 
-            material_id: str, 
-            healthdate: str):
+async def get_material_healthscore(planner_id:str, material_id: str, healthdate: str, db : Session = Depends(get_db)):
 
     material_healthscore_key = "healthscore" + "/" + planner_id + "/" + material_id + "/" + healthdate
     redis_reponse = my_redis.get(material_healthscore_key)
     
-    
-    
+
      # Check if the data exists in Cache
     if redis_reponse != None:
         print("Found the results in redis cache.......healthscore()")
@@ -193,9 +183,7 @@ async def get_material_healthscore(
         new_date = date_obj + td
 
         formatted_date = format_date(date=new_date)
-
-        asyncio.create_task(get_material_healthscore_background(planner_id, material_id, formatted_date))
-
+        asyncio.create_task(get_material_healthscore_background(planner_id, material_id, formatted_date, db))
         return json.loads(redis_reponse)
     else:
         print("I have not found the results in redis cache, computing now...")   
@@ -204,10 +192,13 @@ async def get_material_healthscore(
         num_days = 10  
         
         
-        sql = """SELECT mrp_element, change_quantity FROM admin.MD04 where material = %s AND planner=%s"""
-        data_safety_stock = pd.DataFrame(conn.execute(sql, material_id, planner_id).fetchall())
-        
-        
+        #sql = """SELECT mrp_element, change_quantity FROM admin.MD04 where material = %s AND planner=%s"""
+        #data_safety_stock = pd.DataFrame(conn.execute(sql, material_id, planner_id).fetchall())
+
+        data = db.query(MD04.mrp_element, MD04.change_quantity).where(MD04.material == material_id).where(MD04.planner == planner_id).all()
+        data_safety_stock = pd.DataFrame(data, columns=["mrp_element", "change_quantity"])
+
+
         if len(data_safety_stock.columns) == 0:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail = "Data item does not exist")
 
@@ -229,14 +220,12 @@ async def get_material_healthscore(
             
             formatted_date = format_date(date=new_date)
             
-            # update the cache asynchronously in background
-            # asyncio.create_task(background_tasks.add_task(get_material_healthscore_background,planner_id, material_id, formatted_date))
+            # sql = """SELECT material, mrp_element, total_quantity, demand_date  FROM admin.MD04 WHERE material = %s AND demand_date = %s"""
+            # data= pd.DataFrame(conn.execute(sql, material_id, formatted_date).fetchall(), columns=["material", "mrp_element", "total_quantity", "demand_date" ])
             
-            #asyncio.create_task(get_material_healthscore_background(planner_id, material_id, formatted_date))
+            data_q = db.query(MD04.material, MD04.mrp_element, MD04.total_quantity, MD04.demand_date).where(MD04.material == material_id).where(MD04.demand_date == formatted_date).all()
+            data = pd.DataFrame(data_q, columns=["material", "mrp_element", "total_quantity", "demand_date" ])
             
-            sql = """SELECT material, mrp_element, total_quantity, demand_date  FROM admin.MD04 WHERE material = %s AND demand_date = %s"""
-            data= pd.DataFrame(conn.execute(sql, material_id, formatted_date).fetchall(), columns=["material", "mrp_element", "total_quantity", "demand_date" ])
-                                    
             stock = find_stock(new_date, formatted_date, material_id, data)
             
             
@@ -256,20 +245,20 @@ async def get_material_healthscore(
         
         # This would prepare .csv file that contains total_qty_instances
         df_total_qty_instances = pd.DataFrame(list_qty_instance, columns = ['material', 'demand_date', 'total_quantity', 'safety stock'])
-        #.drop_duplicates(subset=['material', 'demand_date', 'total_quantity', 'safety stock'])
         
         print(tabulate(df_total_qty_instances, headers = 'keys', tablefmt = 'psql'))
         
-        # destruct this global variable
-        #list_qty_instance.clear()
-        #list_qty.clear()
         
         result = sum(avg)/len(avg)
         result = round(result, 2)
         percentage_result = str(result).__add__(' %')
         
-        sql = """SELECT DISTINCT material, mat_description_eng FROM admin.MaterialMaster where material = %s"""
-        df_material = pd.DataFrame(conn.execute(sql, material_id).fetchall(), columns=["material", "mat_description_eng"])
+        data = db.query(MaterialMaster.material, MaterialMaster.mat_description_eng).where(MaterialMaster.material == material_id)
+        df_material = pd.DataFrame(data, columns=["material", "mat_description_eng"])
+
+        
+        #sql = """SELECT DISTINCT material, mat_description_eng FROM admin.MaterialMaster where material = %s"""
+        #df_material = pd.DataFrame(conn.execute(sql, material_id).fetchall(), columns=["material", "mat_description_eng"])
 
 
         health_score = {
@@ -291,7 +280,7 @@ async def get_material_healthscore(
         return health_score
 
 
-async def get_material_healthscore_background(planner_id:str,  material_id: str, healthdate: str):
+async def get_material_healthscore_background(planner_id:str,  material_id: str, healthdate: str, db):
 
     material_healthscore_key = "healthscore" + "/" + planner_id + "/" + material_id + "/" + healthdate
     redis_reponse = my_redis.get(material_healthscore_key)
@@ -300,16 +289,17 @@ async def get_material_healthscore_background(planner_id:str,  material_id: str,
     if redis_reponse != None:
         print("Found the results in redis cache.......")
         
-        #return json.loads(redis_reponse)
     else:
         print("I have not found the results in redis cache, computing now...")   
-        #my_profiler.start("health-score")
         date = healthdate
         num_days = 10  
         
         
-        sql = """SELECT mrp_element, change_quantity FROM admin.MD04 where material = %s AND planner=%s"""
-        data_safety_stock = pd.DataFrame(conn.execute(sql, material_id, planner_id).fetchall())
+        # sql = """SELECT mrp_element, change_quantity FROM admin.MD04 where material = %s AND planner=%s"""
+        # data_safety_stock = pd.DataFrame(conn.execute(sql, material_id, planner_id).fetchall())
+        
+        data = db.query(MD04.mrp_element, MD04.change_quantity).where(MD04.material == material_id).where(MD04.planner == planner_id).all()
+        data_safety_stock = pd.DataFrame(data, columns=["mrp_element", "change_quantity"])
         
         
         if len(data_safety_stock.columns) == 0:
@@ -335,8 +325,11 @@ async def get_material_healthscore_background(planner_id:str,  material_id: str,
             
             formatted_date = format_date(date=new_date)
             
-            sql = """SELECT material, mrp_element, total_quantity, demand_date  FROM admin.MD04 WHERE material = %s AND demand_date = %s"""
-            data= pd.DataFrame(conn.execute(sql, material_id, formatted_date).fetchall(), columns=["material", "mrp_element", "total_quantity", "demand_date" ])
+            # sql = """SELECT material, mrp_element, total_quantity, demand_date  FROM admin.MD04 WHERE material = %s AND demand_date = %s"""
+            # data= pd.DataFrame(conn.execute(sql, material_id, formatted_date).fetchall(), columns=["material", "mrp_element", "total_quantity", "demand_date" ])
+            
+            data_q = db.query(MD04.material, MD04.mrp_element, MD04.total_quantity, MD04.demand_date).where(MD04.material == material_id).where(MD04.demand_date == formatted_date).all()
+            data = pd.DataFrame(data_q, columns=["material", "mrp_element", "total_quantity", "demand_date" ])
                         
             stock = find_stock(new_date, formatted_date, material_id, data)
             list_qty = find_total_quantity_summary(formatted_date, material_id, saftey_stock, data, list_qty) 
@@ -353,19 +346,18 @@ async def get_material_healthscore_background(planner_id:str,  material_id: str,
         
         # This would prepare .csv file that contains total_qty_instances
         df_total_qty_instances = pd.DataFrame(list_qty_instance, columns = ['material', 'demand_date', 'total_quantity', 'safety stock'])
-        #.drop_duplicates(subset=['material', 'demand_date', 'total_quantity', 'safety stock'])
         print(tabulate(df_total_qty_instances, headers = 'keys', tablefmt = 'psql'))
         
-        # destruct this global variable
-        #list_qty_instance.clear()
-        #list_qty.clear()
         
         result = sum(avg)/len(avg)
         result = round(result, 2)
         percentage_result = str(result).__add__(' %')
         
-        sql = """SELECT DISTINCT material, material_9, material_7, mat_description, mat_description_eng FROM admin.MaterialMaster where material = %s"""
-        df_material = pd.DataFrame(conn.execute(sql, material_id).fetchall(), columns=["material", "material_9" , "material_7", "mat_description", "mat_description_eng"])
+        #sql = """SELECT DISTINCT material, material_9, material_7, mat_description, mat_description_eng FROM admin.MaterialMaster where material = %s"""
+        #df_material = pd.DataFrame(conn.execute(sql, material_id).fetchall(), columns=["material", "material_9" , "material_7", "mat_description", "mat_description_eng"])
+        
+        data = db.query(MaterialMaster.material,  MaterialMaster.material_9,  MaterialMaster.material_7,  MaterialMaster.mat_description,  MaterialMaster.mat_description_eng).where(MaterialMaster.material == material_id)
+        df_material = pd.DataFrame(data,  columns=["material", "material_9" , "material_7", "mat_description", "mat_description_eng"])
         
 
 
@@ -378,8 +370,6 @@ async def get_material_healthscore_background(planner_id:str,  material_id: str,
             "total_qty_instances": json.loads(json.dumps(list(df_total_qty_instances.T.to_dict().values())))    
         }
         
-        # my_profiler.end("health-score")
-        # my_profiler.log("print")
 
         # 172800 seconds = 2 days
         my_redis.put(material_healthscore_key, json.dumps(health_score), 172800)
