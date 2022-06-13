@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/pankeshpatel/Desktop/postgres-bmw-material-planner-assistant/backend/venv"
+set -gx VIRTUAL_ENV "/Users/pankeshpatel/Desktop/postgre-planner-server/backend/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
