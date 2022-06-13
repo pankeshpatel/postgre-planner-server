@@ -256,10 +256,6 @@ async def get_material_healthscore(planner_id:str, material_id: str, healthdate:
         data = db.query(MaterialMaster.material, MaterialMaster.mat_description_eng).where(MaterialMaster.material == material_id)
         df_material = pd.DataFrame(data, columns=["material", "mat_description_eng"])
 
-        
-        #sql = """SELECT DISTINCT material, mat_description_eng FROM admin.MaterialMaster where material = %s"""
-        #df_material = pd.DataFrame(conn.execute(sql, material_id).fetchall(), columns=["material", "mat_description_eng"])
-
 
         health_score = {
             "Material": material_id,

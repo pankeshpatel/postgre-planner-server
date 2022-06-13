@@ -13,9 +13,6 @@ from sqlalchemy.orm import Session
 from config.db import get_db
 
 
-
-
-
 # Redis
 from config.redisdb import redis_db
 my_redis = redis_db()
@@ -24,6 +21,12 @@ my_redis = redis_db()
 # Profiler
 from config.profiler import profiler
 my_profiler = profiler()
+
+
+# postgre
+from config.db import get_db
+from sqlalchemy.orm import Session
+from models.dbschema import *
 
 
 
@@ -44,7 +47,7 @@ def notification_match(num1, num2):
    
 # Returns list of pairs of [Expected date (MD04), Erdat (Zgrve)]
 # Change to [Expected date, Good reciept date] in future
-def data(part_number, planner_id):
+def data(part_number, planner_id, db):
     data = []
     md04 = []
     zgrve = []
@@ -54,8 +57,14 @@ def data(part_number, planner_id):
     #file1 = pd.read_csv('/Users/pankeshpatel/Desktop/colab-data/MD04.csv')
     
     # Accessing data from MD04
-    sql_md04 = """SELECT material, demand_date, shipping_notification, mrp_element  FROM MD04 WHERE material = %s AND planner = %s"""
-    file1 = pd.DataFrame(conn.execute(sql_md04, part_number2, planner_id).fetchall())
+    sql_md04 = db.query(MD04.material, MD04.demand_date, MD04.shipping_notification, MD04.mrp_element).where(MD04.material == part_number2 ).where(MD04.planner == planner_id).all()
+    
+    file1 = pd.DataFrame(sql_md04, columns=["material", "demand_date" , "shipping_notification", "mrp_element"])
+    
+    #sql_md04 = """SELECT material, demand_date, shipping_notification, mrp_element  FROM MD04 WHERE material = %s AND planner = %s"""
+    #file1 = pd.DataFrame(conn.execute(sql_md04, part_number2, planner_id).fetchall())
+    
+    
     
     if len(file1.columns) == 0:
          print("*******MD04************************************")
@@ -64,8 +73,11 @@ def data(part_number, planner_id):
     
     # Accessing data from Zgrev
     
-    sql_zgrve = """SELECT matnr, erdat, vbeln from Zgrve WHERE matnr = %s"""
-    file2 = pd.DataFrame(conn.execute(sql_zgrve, part_number).fetchall())
+    sql_zgrve = db.query(Zgrve.matnr, Zgrve.erdat, Zgrve.vbeln).where(Zgrve.matnr == part_number).all()
+    file2 = pd.DataFrame(sql_zgrve, columns=["matnr", "erdat", "vbeln"])
+    
+    #sql_zgrve = """SELECT matnr, erdat, vbeln from Zgrve WHERE matnr = %s"""
+    #file2 = pd.DataFrame(conn.execute(sql_zgrve, part_number).fetchall())
     
     if len(file2.columns) == 0:
          print("*******Zgrve************************************")
@@ -94,7 +106,7 @@ def data(part_number, planner_id):
         matches = 0
         if mrp_element[i] == 'ShipNt' and material[i] == part_number2:
             for j in range(len(zgrve)):
-                if part_number == str(matnr[j]) and matches == 0 and notification_match(ship_not[i],vbeln[j]):
+                if part_number == str(matnr[j]) and matches == 0 and notification_match(str(ship_not[i]),str(vbeln[j])):
                     date = demand_date[i].split('/')
                     date = datetime.date(int(date[2]),int(date[0]),int(date[1]))
                     date2 = erdat[j].split('/')
@@ -129,7 +141,7 @@ def create_percentages(matrix):
    
 # The Markov theory relies on the last arrival time to make a probability
 # Creates a 7x7 probability matrix but returns row based on last arrival time
-def markov_values(part_number, part_data, planner_id):
+def markov_values(part_number, part_data, planner_id, db):
     A = []
     for i in range(0,7):
         m = []
@@ -140,7 +152,8 @@ def markov_values(part_number, part_data, planner_id):
 
     pre_val = -999
     val = -999
-    part_data = data(part_number, planner_id)
+    part_data = data(part_number, planner_id, db)
+    
 
     for i in range(len(part_data)):
         expected = part_data[i][0]
@@ -167,7 +180,7 @@ def markov_values(part_number, part_data, planner_id):
    
    
 # Returns the entire probability matrix for the long-run calculations
-def probability_matrix(part_number, planner_id):
+def probability_matrix(part_number, planner_id, db):
     A = []
     for i in range(0,7):
         m = []
@@ -178,7 +191,7 @@ def probability_matrix(part_number, planner_id):
 
     pre_val = -999
     val = -999
-    part_data = data(part_number, planner_id)
+    part_data = data(part_number, planner_id, db)
 
 
     for i in range(len(part_data)):
@@ -207,15 +220,15 @@ def probability_matrix(part_number, planner_id):
    
 # Returns the Markov output and prints it
 # 7 short-run markov probabilites from 3 days early to 3 days late
-def markov(part_number, planner_id):
-    markov_row = markov_values(part_number, data(part_number, planner_id), planner_id)
+def markov(part_number, planner_id, db):
+    markov_row = markov_values(part_number, data(part_number, planner_id, db), planner_id, db)
     return markov_row
    
    
 # Returns the long-run output and prints it
 # 3 long-run probabilities: early, on-time, late
-def long_run(part_number, planner_id):
-    A = probability_matrix(part_number, planner_id)
+def long_run(part_number, planner_id, db):
+    A = probability_matrix(part_number, planner_id, db)
     for i in range(len(A)):
         for j in range(len(A[0])):
             if i == j:
@@ -237,7 +250,7 @@ def long_run(part_number, planner_id):
 # async def part_probabilities(planner_id: str, material_id: str, user_id: int = Depends(get_current_user), session: Session = Depends(get_db)):
 
 @ranking.get('/{planner_id}/{material_id}',status_code = status.HTTP_200_OK)
-async def part_probabilities(planner_id: str, material_id: str):
+async def part_probabilities(planner_id: str, material_id: str, db : Session = Depends(get_db)):
     
     part_ranking_key = "ranking" + "/" + planner_id + "/" + material_id
     
@@ -253,8 +266,8 @@ async def part_probabilities(planner_id: str, material_id: str):
     else: 
         print("I have not found the results in redis cache, computing now...")   
         #my_profiler.start("part probabilities")        
-        markov_probabilities = markov(material_id, planner_id)
-        long_run_probabilities = long_run(material_id, planner_id)
+        markov_probabilities = markov(material_id, planner_id, db)
+        long_run_probabilities = long_run(material_id, planner_id, db)
         
         
 
