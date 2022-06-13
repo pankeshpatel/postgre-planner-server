@@ -16,7 +16,6 @@ class Cachedis(object):
         try:
             self.__redis = redis.Redis(host, port, db)
             self.__redis.ping()
-            print("Successfully connected to redis....", host)
         except redis.exceptions.RedisError as error:
             print(error)
        

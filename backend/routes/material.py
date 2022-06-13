@@ -29,9 +29,7 @@ material = APIRouter(
 
 @material.get('/{planner_id}',status_code = status.HTTP_200_OK)
 async def get_all_material_info(planner_id: str, db : Session = Depends(get_db)):
-    
-    print("I am in get_all_material_info().... ")
-    
+        
     # Redis caching
     material_planner_id_key = "materials" + "/" + planner_id
     redis_reponse = my_redis.get(material_planner_id_key)
@@ -80,8 +78,7 @@ async def get_material_info(planner_id : str, material_id:str, db : Session = De
     
     
     df_material_planner_master = pd.DataFrame(data, columns=["material", "material_9", "material_7", "mat_description", "mat_description_eng", "safety_stock", "plant", "lot_size" ])
-    
-    
+
     df_material_planner_master = df_material_planner_master.drop_duplicates(subset=['material'])
 
 

@@ -104,7 +104,7 @@ class MaterialMaster(Base):
 class Exception(Base):
     __tablename__ = "Exception"
     
-    id = Column(String(45), primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     mandt = Column('mandt', String(225))
     matnr = Column('matnr', String(225))
     aline = Column('aline', String(225))
@@ -124,7 +124,7 @@ class Exception(Base):
 class MD04(Base):
     __tablename__ = "MD04"
     
-    id = Column(String(45), primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     material = Column("material", String(225))
     plant = Column("plant", String(225))
     mrp_area = Column("mrp_area", String(225))
@@ -151,7 +151,7 @@ class MD04(Base):
 class Zgrve(Base):
     __tablename__ = "Zgrve"
     
-    id = Column(String(45), primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     mandt = Column("mandt", String(225))
     lifnr = Column("lifnr", String(225))
     delnote = Column("delnote", String(225))
