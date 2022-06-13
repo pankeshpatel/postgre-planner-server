@@ -29,7 +29,7 @@ class Planner(Base):
 class MaterialMaster(Base):
     __tablename__ = "MaterialMaster"
     
-    id = Column(String(45), primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     initial_creation_date = Column('initial_creation_date', String(225))	
     last_change_date = Column('last_change_date', String(225))	
     material = Column('material', String(225))	
