@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status, Response, HTTPException, Depends, BackgroundTasks
-from schemas.user import User
+#from schemas.user import User
 from datetime import datetime, date
 import platform
 import os
@@ -31,7 +31,6 @@ my_profiler = profiler()
 
 # postgre
 from config.db import get_db
-from models.dbschema import ExceptionMessage
 from sqlalchemy.orm import Session
 from models.dbschema import *
 

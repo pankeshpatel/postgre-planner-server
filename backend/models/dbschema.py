@@ -6,7 +6,7 @@ from sqlalchemy import Column,  String, Integer
 class User(Base):
     __tablename__ = 'User'
     
-    id = Column(String(45), primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,  autoincrement=True)
     username = Column('username', String(45))
     password = Column( 'password', String(255))  
     
