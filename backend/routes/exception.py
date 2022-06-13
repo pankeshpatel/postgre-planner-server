@@ -55,7 +55,7 @@ async def exception_manager(planner_id:str, days: int, db : Session = Depends(ge
     # Check if the data exists in Cache
     if redis_reponse != None:
         print("Found the results in redis cache.......exception_manager()")
-        asyncio.create_task(exception_manager_background(planner_id, days))
+        asyncio.create_task(exception_manager_background(planner_id, days, db))
         return json.loads(redis_reponse)
     else: 
         print("I have not found the results in redis cache, computing now...")   
@@ -165,7 +165,7 @@ async def exception_matrix(planner_id:str,  days:int, db : Session = Depends(get
     # Check if the data exists in Cache
     if redis_reponse != None:
         print("Found the results in redis cache.......exception_matrix()")
-        asyncio.create_task(exception_matrix_background(planner_id, days))
+        asyncio.create_task(exception_matrix_background(planner_id, days, db))
 
         return json.loads(redis_reponse)
     else: 
@@ -264,7 +264,7 @@ async def exception_matrix(planner_id:str,  days:int, db : Session = Depends(get
 
 
 # This function will advance caching
-async def exception_manager_background(planner_id:str, days: int):
+async def exception_manager_background(planner_id:str, days: int,  db):
 
     tomorrow = datetime.today() + timedelta(days=1)
     
@@ -368,7 +368,7 @@ async def exception_manager_background(planner_id:str, days: int):
         
         
 
-async def exception_matrix_background(planner_id:str,  days:int):
+async def exception_matrix_background(planner_id:str,  days:int,  db):
 
     tomorrow = datetime.today() + timedelta(days=1)    
     end_date = str((tomorrow).strftime("%m/%d/%y"))
