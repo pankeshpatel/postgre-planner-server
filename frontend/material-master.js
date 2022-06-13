@@ -1,0 +1,13 @@
+export const materialMaster=
+
+[
+ {"material":"9227855-01", "material_9":"922785501", "material_7":"9227855", "mat_description":"SCHALTER FEH/LBV", "mat_description_eng":"SWITCH EASY ENTRY RR COMPARTMENT", "plant":"MC10", "planner":"498", "safety_stock":"16"},
+ {"material":"9180626-02", "material_9":"918062602", "material_7":"9180626", "mat_description":"LUEFTER AXIAL ALUMINIUM KABEL KURZ", "mat_description_eng":"FAN AXIAL ALUM..CABLE SHORT FRONT SEAT", "plant":"MC10", "planner":"498", "safety_stock":"180"},
+ {"material":"8254042-01", "material_9":"825404201", "material_7":"8254042", "mat_description":"STEUERUNG MODULE RECHTSLENKER", "mat_description_eng":"CONTROL MODULE RIGHT-HAND DRIVE CAR", "plant":"MC10", "planner":"498", "safety_stock":"30"},
+ {"material":"8079860-04", "material_9":"807986004", "material_7":"8079860", "mat_description":"MD RE BEZ. LE. VO SPORT-X LED. KONT H8", "mat_description_eng":"MDL RH CVR..LE. FRT SPORT-X LED CONT H8", "plant":"MC10", "planner":"498", "safety_stock":"19"},
+ {"material":"7472537-06", "material_9":"747253706", "material_7":"7472537", "mat_description":"MD BEZUG STV VO. SPORT LEDER SCHWARZ", "mat_description_eng":"MDL CVR ST/DPTH/ADJ FRT SPORT LTHR BLACK", "plant":"MC10", "planner":"498", "safety_stock":"100"},
+ {"material":"8067173-03", "material_9":"806717303", "material_7":"8067173", "mat_description":"MD BEZUG SITZ HINTEN MERINO FN LKSW", "mat_description_eng":"MDL CVR SEAT RR MERINO FN LKSW", "plant":"MC10", "planner":"498", "safety_stock":"4"},
+ {"material":"7491138-02", "material_9":"749113802", "material_7":"7491138", "mat_description":"SSA LORDOSE FS + BFS", "mat_description_eng":"SSA LUMBAR DS + PS", "plant":"MC10", "planner":"498", "safety_stock":"4"},
+ {"material":"7491137-02", "material_9":"749113702", "material_7":"7491137", "mat_description":"SSA SPORTSITZ MIT LORDOSE+LBV", "mat_description_eng":"SSA SPORTS SEAT W. LUMBAR+BACK WIDTH ADJ", "plant":"MC10", "planner":"498", "safety_stock":"60"},
+ {"material":"7491133-02", "material_9":"749113302", "material_7":"7491133", "mat_description":"SSA SA459 ELEKTRISCHER SITZ", "mat_description_eng":"SSA SA459 ELECTRIC SEAT", "plant":"MC10", "planner":"498", "safety_stock":"143"},
+ {"material":"7472538-06", "material_9":"747253806", "material_7":"7472538", "mat_description":"MD BEZUG STV VO. SPORT LEDER MOKKA", "mat_description_eng":"MDL CVR ST/DPTH/ADJ FRT SPORT LTHR MOKKA", "plant":"MC10", "planner":"498", "safety_stock":"40"}]

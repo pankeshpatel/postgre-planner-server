@@ -1,0 +1,17 @@
+[Unit]
+Description=this is a mpa server developed for bmw
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/bmw-material-planner-assistant/backend
+Environment="PATH=/home/ubuntu/bmw-material-planner-assistant/backend"
+EnvironmentFile=/home/ubuntu/bmw-material-planner-assistant/backend/.env
+ExecStart=/home/ubuntu/bmw-material-planner-assistant/backend/gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
+
+
+
