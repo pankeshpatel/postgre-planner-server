@@ -68,7 +68,6 @@ async def get_all_material_info(planner_id: str, db : Session = Depends(get_db))
 @material.get('/{planner_id}/{material_id}', status_code = status.HTTP_200_OK)
 async def get_material_info(planner_id : str, material_id:str, db : Session = Depends(get_db)):
     
-    # sql = """SELECT DISTINCT material, material_9, material_7, mat_description, mat_description_eng, safety_stock, plant, lot_size FROM admin.MaterialMaster WHERE planner = %s AND material = %s"""
     
     data = db.query(MaterialMaster.material, 
                         MaterialMaster.material_9, 
@@ -79,7 +78,6 @@ async def get_material_info(planner_id : str, material_id:str, db : Session = De
                         MaterialMaster.plant, 
                         MaterialMaster.lot_size).where(MaterialMaster.planner == planner_id).where(MaterialMaster.material == material_id).all()
     
-    # df_material_planner_master = pd.DataFrame(conn.execute(sql, planner_id, material_id).fetchall(), columns=["material", "material_9", "material_7", "mat_description", "mat_description_eng", "safety_stock", "plant", "lot_size" ])
     
     df_material_planner_master = pd.DataFrame(data, columns=["material", "material_9", "material_7", "mat_description", "mat_description_eng", "safety_stock", "plant", "lot_size" ])
     
@@ -87,7 +85,6 @@ async def get_material_info(planner_id : str, material_id:str, db : Session = De
     df_material_planner_master = df_material_planner_master.drop_duplicates(subset=['material'])
 
 
-    
     response = {
         "planner" : planner_id,
         "material" : material_id,

@@ -1,9 +1,6 @@
 from fastapi import APIRouter, status, HTTPException, Depends
-from config.db import conn
 from schemas.user import User
 from datetime import datetime, date
-from models.dbschema import dbPlanner
-from config.oauth2 import get_current_user
 
 import json
 import random
@@ -14,14 +11,18 @@ from tabulate import tabulate
 
 from sqlalchemy.orm import Session
 from config.db import get_db
-#from config.redisdb import redis_client
 
 
 
-from config.profiler import profiler
+
+
+# Redis
 from config.redisdb import redis_db
 my_redis = redis_db()
 
+
+# Profiler
+from config.profiler import profiler
 my_profiler = profiler()
 
 

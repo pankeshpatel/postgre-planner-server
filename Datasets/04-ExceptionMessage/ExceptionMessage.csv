@@ -1,4 +1,4 @@
-exceptionID,message
+exception_id,message
 69,Recursive BOM components possible
 44,Purchase order proposal reexploded
 2,"New, and opening date in the past"

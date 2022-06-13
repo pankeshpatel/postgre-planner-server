@@ -14,8 +14,8 @@ class User(Base):
 class ExceptionMessage(Base):
     __tablename__ = "ExceptionMessage"
     
-    id = Column(String(45), primary_key=True, index=True)
-    exceptionID = Column('exceptionID', Integer)
+    exid = Column(Integer, primary_key=True, autoincrement=True)
+    exceptionID = Column('exception_id', Integer)
     message  =  Column('message', String(225))
     
 class Planner(Base):

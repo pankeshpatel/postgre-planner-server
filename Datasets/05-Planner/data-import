@@ -1,1 +1,1 @@
-\COPY public."Planner" (id, name, email) FROM '/Users/pankeshpatel/Desktop/postgres-bmw-material-planner-assistant/Datasets/05-Planner/planner.csv' DELIMITER ',' CSV HEADER;
+\COPY public."Planner" (id, name, email) FROM '/Users/pankeshpatel/Desktop/postgre-planner-server/Datasets/05-Planner/planner.csv' DELIMITER ',' CSV HEADER;

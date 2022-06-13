@@ -38,6 +38,6 @@ app.add_middleware(
 app.include_router(planner)
 app.include_router(material)
 # app.include_router(healthscore)
-# app.include_router(exception)
+app.include_router(exception)
 # app.include_router(ranking)
 # app.include_router(authentication)
