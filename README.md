@@ -9,6 +9,8 @@ view -> command palette -> python:select interpreter -> ./venv/bin/python
 
 we also need to enable virtual environment in terminal
 source venv/bin/activate
+
+deactivate # to deactivate the virtial enevironment
 ```
 
 ### to install dependences
