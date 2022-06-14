@@ -2,6 +2,7 @@
 import json
 import sys
 import redis
+from config.env import settings
 
 
 
@@ -11,7 +12,7 @@ def redis_db():
 
 class Cachedis(object):
     
-    def __init__(self, host="localhost", port=6379, db=0):
+    def __init__(self, host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=0):
         
         try:
             self.__redis = redis.Redis(host, port, db)

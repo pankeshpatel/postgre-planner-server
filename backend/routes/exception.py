@@ -2,7 +2,6 @@ from fastapi import APIRouter, status, Depends
 from datetime import datetime, date
 import pandas as pd
 import janitor
-#from tabulate import tabulate
 import json
 from datetime import datetime, timedelta, date
 

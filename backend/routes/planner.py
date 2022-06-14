@@ -38,7 +38,7 @@ async def get_all_material_planner_info(db : Session = Depends(get_db), current_
     
     
 @planner.get('/planner-id/{id}',  status_code = status.HTTP_200_OK)
-async def get_material_planner_info(id:str, db : Session = Depends(get_db)):
+async def get_material_planner_info(id:str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
     planner_id_key = "planners" + "/" + "planner-id" + "/" + id
     redis_reponse = my_redis.get(planner_id_key)
@@ -63,7 +63,7 @@ async def get_material_planner_info(id:str, db : Session = Depends(get_db)):
 
 
 @planner.get('/planner-name/{name}',  status_code = status.HTTP_200_OK)
-async def get_material_planner_info(name:str, db : Session = Depends(get_db)):
+async def get_material_planner_info(name:str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
         
     data = db.query(Planner.id, Planner.name, Planner.email).where(Planner.name == name).all()
 

@@ -55,19 +55,13 @@ def data(part_number, planner_id, db):
     zgrve = []
     part_number2 = str(part_number)[0:7]+'-'+str(part_number)[7:9]
 
-    # makes a 2-D array with all the md04 data
-    #file1 = pd.read_csv('/Users/pankeshpatel/Desktop/colab-data/MD04.csv')
     
     # Accessing data from MD04
     sql_md04 = db.query(MD04.material, MD04.demand_date, MD04.shipping_notification, MD04.mrp_element).where(MD04.material == part_number2 ).where(MD04.planner == planner_id).all()
     
     file1 = pd.DataFrame(sql_md04, columns=["material", "demand_date" , "shipping_notification", "mrp_element"])
     
-    #sql_md04 = """SELECT material, demand_date, shipping_notification, mrp_element  FROM MD04 WHERE material = %s AND planner = %s"""
-    #file1 = pd.DataFrame(conn.execute(sql_md04, part_number2, planner_id).fetchall())
-    
-    
-    
+        
     if len(file1.columns) == 0:
          print("*******MD04************************************")
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail = "Data item does not exist")
@@ -78,16 +72,12 @@ def data(part_number, planner_id, db):
     sql_zgrve = db.query(Zgrve.matnr, Zgrve.erdat, Zgrve.vbeln).where(Zgrve.matnr == part_number).all()
     file2 = pd.DataFrame(sql_zgrve, columns=["matnr", "erdat", "vbeln"])
     
-    #sql_zgrve = """SELECT matnr, erdat, vbeln from Zgrve WHERE matnr = %s"""
-    #file2 = pd.DataFrame(conn.execute(sql_zgrve, part_number).fetchall())
     
     if len(file2.columns) == 0:
          print("*******Zgrve************************************")
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail = "Data item does not exist")
     
     
-    #file2 = pd.read_csv('/Users/pankeshpatel/Desktop/colab-data/Zgrve.csv')
-    #print(file2)
     
     md04 = pd.DataFrame(file1, columns=['material','demand_date','shipping_notification','mrp_element'])
     zgrve = pd.DataFrame(file2, columns=['matnr','erdat','vbeln'])
@@ -249,8 +239,6 @@ def long_run(part_number, planner_id, db):
 # 1. Markov probability (standard bar graph)
 # 2. Long-run probability (horizontal 100% stacked bar graph)
 
-# async def part_probabilities(planner_id: str, material_id: str, user_id: int = Depends(get_current_user), session: Session = Depends(get_db)):
-
 @ranking.get('/{planner_id}/{material_id}',status_code = status.HTTP_200_OK)
 async def part_probabilities(planner_id: str, material_id: str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
@@ -259,7 +247,6 @@ async def part_probabilities(planner_id: str, material_id: str, db : Session = D
     redis_reponse = my_redis.get(part_ranking_key)
     
     
-    #redis_reponse = redis_client.get(part_ranking_key)
     
     # Check if the data exists in Cache
     if redis_reponse != None:
@@ -267,7 +254,6 @@ async def part_probabilities(planner_id: str, material_id: str, db : Session = D
         return json.loads(redis_reponse)
     else: 
         print("I have not found the results in redis cache, computing now...")   
-        #my_profiler.start("part probabilities")        
         markov_probabilities = markov(material_id, planner_id, db)
         long_run_probabilities = long_run(material_id, planner_id, db)
         
@@ -288,11 +274,6 @@ async def part_probabilities(planner_id: str, material_id: str, db : Session = D
                         {'late':long_run_probabilities[2]}]
         }
         
-        # my_profiler.end("part probabilities")
-        # my_profiler.log("print")
-
-        # Caching the API Response
-        #redis_client.set(part_ranking_key, json.dumps(json_output, indent=4) )
         
         my_redis.put(part_ranking_key, json.dumps(json_output, indent=4))
         
@@ -300,18 +281,6 @@ async def part_probabilities(planner_id: str, material_id: str, db : Session = D
         return json.loads(json.dumps(json_output, indent=4))
 
 
-
-# The only user input is the part number
-# part_number = random.choice([742065710,809198305,743093505,807165907,741788607])
-# print(part_probabilities(part_number))
-
-
-
-# This is a material 
-# @ranking.get('/{material_id}',status_code = status.HTTP_200_OK)
-# async def part_ranking(material_id:str):
-#    #part_number = random.choice([742065710,809198305,743093505,807165907,741788607])
-#    print(part_probabilities(material_id))
 
 
 

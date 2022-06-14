@@ -19,12 +19,6 @@ from models.dbschema import *
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
-# SECRET_KEY
-# Algorithm
-# Expriation time
-
-
-
 
 # This would generate a token
 # More detail - https://jwt.io/
