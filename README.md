@@ -13,76 +13,15 @@ source venv/bin/activate
 deactivate # to deactivate the virtial enevironment
 ```
 
-### to install dependences
+- The virtual environment helps us to prepare `requirements.txt` file `pip freeze > requirements.txt`
 
-```
-pip install -r requirements.txt
-```
+### backend
 
 ```
 cd backend
+pip install -r requirements.txt
 uvicorn main:app --reload
-```
-
-```
-aws ec2
-nohup uvicorn main:app --reload --host 0.0.0.0 &
-```
-
-mysql docker
-
-```
-docker run --name mysqldb --platform linux/x86_64 -e MYSQL_DATABASE=admin -e MYSQL_ROOT_PASSWORD=admin -p 3306:3306 mysql:latest
-```
-
-API Server
-
-```
 http://localhost:8000/docs
-
-```
-
-## database - mysql
-
-```
-/usr/local/mysql/bin/mysql -u root -p
-show databases;
-use admin;
-show tables;
-```
-
-## Installing MySQL on AWS EC2 instance - ubuntu
-
-- mysql installation
-
-```
-sudo apt update
-sudo apt install mysql-server
-```
-
-- status check on mysql server installation
-
-```
-sudo systemctl status mysql
-```
-
-- mysql command prompt
-
-```
-sudo mysql
-```
-
-- set a root password
-  replace your password `your_password_here`
-
-```
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password_here'
-```
-
-- mysql command prompt
-
-```
-sudo mysql -u root -p
 ```
 
 ## Running FastAPI Server AWS EC2
@@ -140,25 +79,13 @@ sudo ufw enable # to make the firewall active
 
 ```
 cd frontend
+Install dependencies: `npm install` or `yarn`
+Start the server: `npm run dev` or `yarn dev`
+Views are on: `localhost:3000`
 
 ```
 
-- Install dependencies: `npm install` or `yarn`
-
-- Start the server: `npm run dev` or `yarn dev`
-
-- Views are on: `localhost:3000`
-
-### frontend deployment to EC2
-
-[Guide](https://medium.com/today-i-solved/how-to-deploy-next-js-on-aws-ec2-with-ssl-https-7980ec6fe8d3)
-
-### API guide
-
-- health score query sample:
-- http://localhost:8000/healthscore/114/7417886-07?healthdate=04/20/22&plant=MC10
-
-### Database guide
+## Data wrangling
 
 - MD04 data must be sorted according to the demand_date (oldest first)
 - demand_date field format must be in mm/dd/yy (e.g., 04/20/22).
