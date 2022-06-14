@@ -24,7 +24,23 @@ uvicorn main:app --reload
 http://localhost:8000/docs
 ```
 
-## Running FastAPI Server AWS EC2
+## frontend
+
+```
+cd frontend
+Install dependencies: `npm install` or `yarn`
+Start the server: `npm run dev` or `yarn dev`
+Views are on: `localhost:3000`
+
+```
+
+## data wrangling
+
+- MD04 data must be sorted according to the demand_date (oldest first)
+- demand_date field format must be in mm/dd/yy (e.g., 04/20/22).
+- the .csv file is in UTF-CSV format, Save the UTF-CSV file to .csv file
+
+## server setup on ec2 (optional)
 
 ```
 uvicorn --host 0.0.0.0 main:app --reload
@@ -46,13 +62,8 @@ nohup gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:800
 - nginx installation
 
 ```
-sudo-apt install nginx -y
-```
-
-- start the nginx
-
-```
-systemctl start nginx
+sudo-apt install nginx -y # nginx installation
+systemctl start nginx  # start the nginx
 ```
 
 - check nginx status
@@ -74,19 +85,3 @@ sudo ufw allow http  # add rules
 sudo ufw allow ssh   # add rules
 sudo ufw enable # to make the firewall active
 ```
-
-## frontend
-
-```
-cd frontend
-Install dependencies: `npm install` or `yarn`
-Start the server: `npm run dev` or `yarn dev`
-Views are on: `localhost:3000`
-
-```
-
-## Data wrangling
-
-- MD04 data must be sorted according to the demand_date (oldest first)
-- demand_date field format must be in mm/dd/yy (e.g., 04/20/22).
-- the .csv file is in UTF-CSV format, Save the UTF-CSV file to .csv file
