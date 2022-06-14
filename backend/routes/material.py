@@ -18,6 +18,9 @@ from config.db import get_db
 from models.dbschema import MaterialMaster
 from sqlalchemy.orm import Session
 
+from config.oauth2 import get_current_user
+
+
 
 material = APIRouter(
     prefix = "/materials",
@@ -28,7 +31,7 @@ material = APIRouter(
 
 
 @material.get('/{planner_id}',status_code = status.HTTP_200_OK)
-async def get_all_material_info(planner_id: str, db : Session = Depends(get_db)):
+async def get_all_material_info(planner_id: str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
         
     # Redis caching
     material_planner_id_key = "materials" + "/" + planner_id
@@ -64,7 +67,7 @@ async def get_all_material_info(planner_id: str, db : Session = Depends(get_db))
 
 
 @material.get('/{planner_id}/{material_id}', status_code = status.HTTP_200_OK)
-async def get_material_info(planner_id : str, material_id:str, db : Session = Depends(get_db)):
+async def get_material_info(planner_id : str, material_id:str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
     
     data = db.query(MaterialMaster.material, 

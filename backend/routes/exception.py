@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 
 from models.dbschema import *
 
+from config.oauth2 import get_current_user
 
 
 import asyncio
@@ -36,14 +37,14 @@ materiallist = []
 
 
 @exception.get('/', status_code = status.HTTP_200_OK)
-async def get_all_exception_info(db : Session = Depends(get_db)):   
+async def get_all_exception_info(db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):   
     
     return db.query(ExceptionMessage).all()
 
 
 
 @exception.get('/manager/{planner_id}',  status_code = status.HTTP_200_OK)
-async def exception_manager(planner_id:str, days: int, db : Session = Depends(get_db)):
+async def exception_manager(planner_id:str, days: int, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
 
     end_date = str(datetime.today().strftime("%m/%d/%y"))
@@ -151,7 +152,7 @@ async def exception_manager(planner_id:str, days: int, db : Session = Depends(ge
     
 
 @exception.get('/matrix/{planner_id}/', status_code = status.HTTP_200_OK)
-async def exception_matrix(planner_id:str,  days:int, db : Session = Depends(get_db)):
+async def exception_matrix(planner_id:str,  days:int, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
 
     end_date = str(datetime.today().strftime("%m/%d/%y"))
     start_date = str((datetime.today() + timedelta(days=-days)).strftime("%m/%d/%y"))

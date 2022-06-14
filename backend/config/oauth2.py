@@ -10,6 +10,12 @@ from sqlalchemy.orm import Session
 from config.db import get_db
 
 
+# postgre
+from config.db import get_db
+from sqlalchemy.orm import Session
+from models.dbschema import *
+
+
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
@@ -51,7 +57,7 @@ def verify_access_token(token: str, credentials_exception):
 
 # This is a function that will be put in the api call to provide a security
 # layer whenever an api is called.
-def get_current_user(token: str = Depends(oauth2_scheme)):
+def get_current_user(token: str = Depends(oauth2_scheme), db : Session = Depends(get_db)):
     credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                           detail=f"Could not validate credentials", 
                                           headers={"WWW-Authenticate": "Bearer"})
@@ -59,6 +65,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     token = verify_access_token(token, credentials_exception)
     
     
-    user = conn.execute(dbUsers.select().where(dbUsers.c.username == token.id)).first()
+    #user = conn.execute(dbUsers.select().where(dbUsers.c.username == token.id)).first()
+    user  = db.query(User).where(User.username == token.id).first()
     
     return user

@@ -2,11 +2,12 @@ from fastapi import APIRouter, status, HTTPException, Depends
 
 import pandas as pd
 import json
+from config.oauth2 import get_current_user
 
 
 # Postgres 
 from config.db import get_db
-from models.dbschema import Planner
+from models.dbschema import *
 from sqlalchemy.orm import Session
 
 
@@ -24,7 +25,7 @@ planner = APIRouter(
 
     
 @planner.get('/',  status_code = status.HTTP_200_OK)
-async def get_all_material_planner_info(db : Session = Depends(get_db)):
+async def get_all_material_planner_info(db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
     data = db.query(Planner.id, Planner.name, Planner.email).all()
     

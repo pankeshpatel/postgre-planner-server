@@ -11,6 +11,8 @@ from tabulate import tabulate
 
 from sqlalchemy.orm import Session
 from config.db import get_db
+from config.oauth2 import get_current_user
+
 
 
 # Redis
@@ -250,7 +252,7 @@ def long_run(part_number, planner_id, db):
 # async def part_probabilities(planner_id: str, material_id: str, user_id: int = Depends(get_current_user), session: Session = Depends(get_db)):
 
 @ranking.get('/{planner_id}/{material_id}',status_code = status.HTTP_200_OK)
-async def part_probabilities(planner_id: str, material_id: str, db : Session = Depends(get_db)):
+async def part_probabilities(planner_id: str, material_id: str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
     
     part_ranking_key = "ranking" + "/" + planner_id + "/" + material_id
     

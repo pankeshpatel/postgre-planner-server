@@ -13,6 +13,9 @@ from typing import Optional
 import json
 from tabulate import tabulate
 
+from config.oauth2 import get_current_user
+
+
 
 #Redis
 from config.redisdb import redis_db
@@ -164,7 +167,7 @@ def sigmoid(SS: int, k: float) -> float:
 
 
 @healthscore.get('/{planner_id}/{material_id}', status_code = status.HTTP_200_OK)
-async def get_material_healthscore(planner_id:str, material_id: str, healthdate: str, db : Session = Depends(get_db)):
+async def get_material_healthscore(planner_id:str, material_id: str, healthdate: str, db : Session = Depends(get_db), current_user : int = Depends(get_current_user)):
 
     material_healthscore_key = "healthscore" + "/" + planner_id + "/" + material_id + "/" + healthdate
     redis_reponse = my_redis.get(material_healthscore_key)
