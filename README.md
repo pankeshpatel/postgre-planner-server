@@ -11,9 +11,10 @@ we also need to enable virtual environment in terminal
 source venv/bin/activate
 
 deactivate # to deactivate the virtial enevironment
-```
 
-- The virtual environment helps us to prepare `requirements.txt` file `pip freeze > requirements.txt`
+The virtual environment helps us to prepare `requirements.txt` file `pip freeze > requirements.txt`
+
+```
 
 ### backend
 
@@ -57,7 +58,7 @@ gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
 nohup gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
 ```
 
-## setup nginx on ec2
+### setup nginx on ec2
 
 - nginx installation
 
@@ -77,7 +78,7 @@ systemctl start nginx  # start the nginx
 
 - make sure that fastapi server is running.
 
-## setup a firewall
+### setup a firewall
 
 ```
 sudo ufw status
