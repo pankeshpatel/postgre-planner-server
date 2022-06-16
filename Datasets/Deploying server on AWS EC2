@@ -119,10 +119,77 @@ Deploying server on AWS EC2
 - `uvicorn --host 0.0.0.0 main:app` 
   (`--host` is necessary because it allows you to listen on IP address of AWS EC2 instance)
 
-- when we reboot a system/a program crashes, `uvicorn ..` does not start automatically.
-  to address this issue, we use a process manager and `gunicorn...`
+- If the application is crashed / reboot our machhine, `uvicorn` does not restart automatically.
+  for these feature use we will use process manager -- `gunicorn`
 
-- to install `pip install gunicorn` 
+- ```
+	pip install gunicorn
+	gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
+	Ctl + C  # to stop gunicorn process
+
+  ```
+
+### running server as a service  
+
+-  The above command locks up the terminal.  I want to run (1) this in background and more importantly,
+  (2) I would like to startup on boots automatically. 
+
+- to achive the above objectives, we would run it as a service. 
+
+- To see the existing services @ AWS EC2 `cd /etc/systemd/system`
+  We would create a brand new service for `gunicorn`
+
+- create a file `gunicorn.service` in your code repository for future access
+- create a file in `touch /etc/systemd/system/bmw-server.service`
+- copy/paste content of `gunicorn.service` into `bmw-server.service`
+- to start the service `systemctl start bmw-server`
+- to check the status of service `systemctl status bmw-server`
+- to enable service on startup (after reboot) automatically `sudo systemctl enable bmw-server`
+- to stop service `sudo systemctl stop bmw-server`
+
+
+### setup nginx on ec2 (gateway/load balancer)
+
+	```
+	sudo apt install nginx -y  # nginx installation
+
+	systemctl start nginx # start the nginx
+	```
+
+- check nginx status
+  go to the url `http://<ip-address>`
+  you can also check the status `systemctl status nginx`
+
+- nginx configuration
+  `cd /etc/nginx/sites-available`
+  edit ngix file `default`
+  `systemctl restart nginx`
+
+- make sure that fastapi server is running.
+
+
+### setup a firewall for basic security 
+
+	```
+	sudo ufw status
+	sudo ufw allow http  # add rules
+	sudo ufw allow ssh   # add rules
+	sudo ufw allow 5432  # for postgres 
+	sudo ufw enable      # to make the firewall active
+	sudo ufw delete allow 5432 # if you want to delete a rule
+
+	```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
