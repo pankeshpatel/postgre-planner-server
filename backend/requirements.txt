@@ -8,6 +8,7 @@ Deprecated==1.2.13
 ecdsa==0.17.0
 fastapi==0.78.0
 greenlet==1.1.2
+gunicorn==20.1.0
 h11==0.13.0
 idna==3.3
 lazy_loader==0.1rc2

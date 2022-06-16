@@ -46,7 +46,7 @@ Deploying server on AWS EC2
 -   `git clone https://github.com/pankeshpatel/postgre-planner-server.git .`
 
 -  `pip install -r requirements.txt` # to install requirements
-- 
+ 
 
 
 
@@ -99,6 +99,34 @@ Deploying server on AWS EC2
 
 - refer redis documentation
 - to check redis status: `redis-cli -h localhost -p 6379 ping`
+
+
+### setup environment variables
+
+- to see all default environment variables `printenv` 
+- you can set the environment variable `export <variable_name> = <variable_value>` 
+  (e.g., `export MY_NAME=pankesh`)
+- you can remove the environment varibale `unset <variable-name>`
+- to create an .env file `touch /home/pankesh/.env` 
+- copy/paste your environment variable into `.env` file
+- to set all environment variables `set -o allexport;source /home/pankesh/.env; set +o allexport`
+- copy this command `set -o allexport;source /home/pankesh/.env; set +o allexport` at bottom of the file
+  `/home/pankesh/.profile` in order to persist all environment variable after reboot
+
+
+### running uvicorn server 
+
+- `uvicorn --host 0.0.0.0 main:app` 
+  (`--host` is necessary because it allows you to listen on IP address of AWS EC2 instance)
+
+- when we reboot a system/a program crashes, `uvicorn ..` does not start automatically.
+  to address this issue, we use a process manager and `gunicorn...`
+
+- to install `pip install gunicorn` 
+
+
+
+
 
 
 
