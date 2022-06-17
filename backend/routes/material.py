@@ -19,7 +19,6 @@ from sqlalchemy.orm import Session
 from config.oauth2 import get_current_user
 
 
-
 material = APIRouter(
     prefix = "/materials",
     tags=["materials"]

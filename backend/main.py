@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-#from routes.index import *
 from fastapi.middleware.cors import CORSMiddleware
 from config.db import engine, get_db
 from models.dbschema import *
 from routes.index import *
 
 
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 
 

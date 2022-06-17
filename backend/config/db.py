@@ -11,6 +11,7 @@ from config.env import settings
 #SQLALCHEMY_DATABASE_URL = "postgresql://postgres:root123@localhost/postgres"
 
 SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DATABASE}'
+
                                                                                                     
                                                                                                     
 #.DB_USER, settings.DB_PASSWORD, settings.DB_HOST, settings.DB_PORT , settings.DATABASE)
@@ -19,6 +20,8 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+#Base.metadata.create_all(bind=engine)
 
 # Dependency
 def get_db():

@@ -86,7 +86,6 @@ Views are on: `localhost:3000`
 - `git clone https://github.com/pankeshpatel/postgre-planner-server.git .`
 
 - `pip install -r requirements.txt` # to install requirements
--
 
 ### Postgres db
 
@@ -135,31 +134,58 @@ Views are on: `localhost:3000`
 - refer redis documentation
 - to check redis status: `redis-cli -h localhost -p 6379 ping`
 
-## server setup on ec2 (optional)
+### setup environment variables
 
-```
-uvicorn --host 0.0.0.0 main:app --reload
-```
+- to see all default environment variables `printenv`
+- you can set the environment variable `export <variable_name> = <variable_value>`
+  (e.g., `export MY_NAME=pankesh`)
+- you can remove the environment varibale `unset <variable-name>`
+- to create an .env file `touch /home/pankesh/.env`
+- copy/paste your environment variable into `.env` file
+- to set all environment variables `set -o allexport;source /home/pankesh/.env; set +o allexport`
+- copy this command `set -o allexport;source /home/pankesh/.env; set +o allexport` at bottom of the file
+  `/home/pankesh/.profile` in order to persist all environment variable after reboot
+
+### running uvicorn server
+
+- `uvicorn --host 0.0.0.0 main:app`
+  (`--host` is necessary because it allows you to listen on IP address of AWS EC2 instance)
 
 - If the application is crashed / reboot our machhine, `uvicorn` does not restart automatically.
   for these feature use we will use process manager -- `gunicorn`
 
-```
-pip install gunicorn
-gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
+- ```
+  pip install gunicorn
+  gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
+  Ctl + C  # to stop gunicorn process
 
-# for background
-nohup gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
-```
+  ```
 
-### setup nginx on ec2
+### running server as a service
 
-- nginx installation
+- The above command locks up the terminal. I want to run (1) this in background and more importantly,
+  (2) I would like to startup on boots automatically.
 
-```
-sudo-apt install nginx -y # nginx installation
-systemctl start nginx  # start the nginx
-```
+- to achive the above objectives, we would run it as a service.
+
+- To see the existing services @ AWS EC2 `cd /etc/systemd/system`
+  We would create a brand new service for `gunicorn`
+
+- create a file `gunicorn.service` in your code repository for future access
+- create a file in `touch /etc/systemd/system/bmw-server.service`
+- copy/paste content of `gunicorn.service` into `bmw-server.service`
+- to start the service `systemctl start bmw-server`
+- to check the status of service `systemctl status bmw-server`
+- to enable service on startup (after reboot) automatically `sudo systemctl enable bmw-server`
+- to stop service `sudo systemctl stop bmw-server`
+
+### setup nginx on ec2 (gateway/load balancer)
+
+    ```
+    sudo apt install nginx -y  # nginx installation
+
+    systemctl start nginx # start the nginx
+    ```
 
 - check nginx status
   go to the url `http://<ip-address>`
@@ -172,11 +198,14 @@ systemctl start nginx  # start the nginx
 
 - make sure that fastapi server is running.
 
-### setup a firewall
+### setup a firewall for basic security
 
-```
-sudo ufw status
-sudo ufw allow http  # add rules
-sudo ufw allow ssh   # add rules
-sudo ufw enable # to make the firewall active
-```
+    ```
+    sudo ufw status
+    sudo ufw allow http  # add rules
+    sudo ufw allow ssh   # add rules
+    sudo ufw allow 5432  # for postgres
+    sudo ufw enable      # to make the firewall active
+    sudo ufw delete allow 5432 # if you want to delete a rule
+
+    ```
