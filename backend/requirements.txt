@@ -10,7 +10,6 @@ fastapi==0.78.0
 greenlet==1.1.2
 gunicorn==20.1.0
 h11==0.13.0
-httptools==0.4.0
 idna==3.3
 lazy_loader==0.1rc2
 multipledispatch==0.6.0
@@ -31,7 +30,6 @@ python-dotenv==0.20.0
 python-jose==3.3.0
 python-multipart==0.0.5
 pytz==2022.1
-PyYAML==6.0
 redis==4.3.3
 rsa==4.8
 scipy==1.8.1
@@ -42,8 +40,5 @@ starlette==0.19.1
 tabulate==0.8.9
 typing_extensions==4.2.0
 uvicorn==0.17.6
-uvloop==0.16.0
-watchgod==0.8.2
-websockets==10.3
 wrapt==1.14.1
 xarray==2022.3.0

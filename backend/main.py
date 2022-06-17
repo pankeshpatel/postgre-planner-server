@@ -34,6 +34,10 @@ app.add_middleware(
     allow_headers = ["*"]
  )
 
+@app.get("/")
+def root():
+   return {"hello" : "world"}
+
 
 app.include_router(planner)
 app.include_router(material)
