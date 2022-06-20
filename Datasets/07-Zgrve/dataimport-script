@@ -1,50 +1,50 @@
 
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/alec/Zgrve_5A11EC1-02.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/alec/Zgrve_5A11EC1-02.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/alec/Zgrve_5A11EC3-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/alec/Zgrve_5A11EC3-03.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/alec/Zgrve_5A11EC4-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/alec/Zgrve_5A11EC4-03.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/alec/Zgrve_5A11ED1-02.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/alec/Zgrve_5A11ED1-02.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/alec/Zgrve_9451274-07.csv' DELIMITER ',' CSV HEADER;
-
-
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/ben/Zgrve_741788607.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/ben/Zgrve_742065710.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/ben/Zgrve_743093505.csv' DELIMITER ',' CSV HEADER;
-
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/ben/Zgrve_807165907.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/ben/Zgrve_809198305.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/alec/Zgrve_9451274-07.csv' DELIMITER ',' CSV HEADER;
 
 
 
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/ben/Zgrve_741788607.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/justin/Zgrve_7470965-04.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/ben/Zgrve_742065710.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/justin/Zgrve_8075177-10.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/justin/Zgrve_8075179-08.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/justin/Zgrve_8097479-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/ben/Zgrve_743093505.csv' DELIMITER ',' CSV HEADER;
 
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/justin/Zgrve_874667-10.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/ben/Zgrve_807165907.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/ben/Zgrve_809198305.csv' DELIMITER ',' CSV HEADER;
 
 
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/liliana/Zgrve_7489481-05.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/liliana/Zgrve_7489482-06.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/justin/Zgrve_7470965-04.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/liliana/Zgrve_7951486-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/justin/Zgrve_8075177-10.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/liliana/Zgrve_8077652-06.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/justin/Zgrve_8075179-08.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Zgrve" (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/07-Zgrve/liliana/Zgrve_9470159-04.csv' DELIMITER ',' CSV HEADER;
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/justin/Zgrve_8097479-03.csv' DELIMITER ',' CSV HEADER;
+
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/justin/Zgrve_8746967-10.csv' DELIMITER ',' CSV HEADER;
+
+
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/liliana/Zgrve_7489481-05.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/liliana/Zgrve_7489482-06.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/liliana/Zgrve_7951486-03.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/liliana/Zgrve_8077652-06.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.zgrve (mandt,lifnr,delnote,trailer,matnr,mblnr,itmno,erdat,erfmg,meins,ebeln,ebelp,werks,lgort,bwart,rct_ident,crttime,status,shkzg,vbeln,bolnr,p_ingestday,p_ingesttime) FROM  '/Datasets/07-Zgrve/liliana/Zgrve_9470159-04.csv' DELIMITER ',' CSV HEADER;

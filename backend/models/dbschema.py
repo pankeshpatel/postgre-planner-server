@@ -4,7 +4,9 @@ from config.db import Base
 from sqlalchemy import Column,  String, Integer
 
 class User(Base):
-    __tablename__ = 'User'
+    #__tablename__ = 'User'
+    __tablename__ = "user"
+
     
     id = Column(Integer, primary_key=True,  autoincrement=True)
     username = Column('username', String(45))
@@ -12,14 +14,17 @@ class User(Base):
     
 
 class ExceptionMessage(Base):
-    __tablename__ = "ExceptionMessage"
+    #__tablename__ = "ExceptionMessage"
+    __tablename__ = "exceptionmessage"
+
     
     exid = Column(Integer, primary_key=True, autoincrement=True)
     exceptionID = Column('exception_id', Integer)
     message  =  Column('message', String(225))
     
 class Planner(Base):
-    __tablename__ = "Planner"
+    # __tablename__ = "Planner"
+    __tablename__ = "planner"
     
     planner_id =  Column(Integer, primary_key=True, autoincrement=True)
     id = Column('id', String(225))
@@ -27,7 +32,9 @@ class Planner(Base):
     email = Column('email', String(225))   
 
 class MaterialMaster(Base):
-    __tablename__ = "MaterialMaster"
+    # __tablename__ = "MaterialMaster"
+    __tablename__ = "materialmaster"
+
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     initial_creation_date = Column('initial_creation_date', String(225))	
@@ -102,7 +109,9 @@ class MaterialMaster(Base):
     _load_date = Column('_load_date', String(225))
     
 class Exception(Base):
-    __tablename__ = "Exception"
+    # __tablename__ = "Exception"
+    __tablename__ = "exception"
+
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     mandt = Column('mandt', String(225))
@@ -122,7 +131,9 @@ class Exception(Base):
     
     
 class MD04(Base):
-    __tablename__ = "MD04"
+    # __tablename__ = "MD04"
+    __tablename__ = "md04"
+
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     material = Column("material", String(225))
@@ -149,7 +160,9 @@ class MD04(Base):
     _load_date = Column("_load_date", String(225))
     
 class Zgrve(Base):
-    __tablename__ = "Zgrve"
+    # __tablename__ = "Zgrve"
+    __tablename__ = "zgrve"
+
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     mandt = Column("mandt", String(225))

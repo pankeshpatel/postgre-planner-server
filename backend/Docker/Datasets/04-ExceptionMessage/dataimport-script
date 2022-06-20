@@ -1,0 +1,1 @@
+\COPY public."ExceptionMessage" (exception_id,message) FROM '/Datasets/04-ExceptionMessage/ExceptionMessage.csv' DELIMITER ',' CSV HEADER;

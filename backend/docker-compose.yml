@@ -14,7 +14,10 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   postgres:
-    image: postgres:latest
+    #image: postgres:latest
+    build:
+      context: ./Docker
+      dockerfile: db.Dockerfile
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root123

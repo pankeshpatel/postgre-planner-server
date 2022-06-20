@@ -1,44 +1,42 @@
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/alec/exhist_5A11EC1-02.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/alec/exhist_5A11EC4-03.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Datasets/02-Exception/alec/exhist_9451274-07.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/alec/exhist_5A11EC3-03.csv' DELIMITER ',' CSV HEADER;
+
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/alec/exhist_5A11ED1-02.csv' DELIMITER ',' CSV HEADER;
 
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/alec/exhist_5A11EC1-02.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/ben/exhist_741788607.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/alec/exhist_5A11EC4-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Datasets/02-Exception/ben/exhist_743093505.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/alec/exhist_9451274-07.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/ben/exhist_809198305.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/alec/exhist_5A11EC3-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/ben/exhist_742065710.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/alec/exhist_5A11ED1-02.csv' DELIMITER ',' CSV HEADER;
-
-
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/ben/exhist_741788607.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/ben/exhist_743093505.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/ben/exhist_809198305.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/ben/exhist_742065710.csv' DELIMITER ',' CSV HEADER;
-
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/ben/exhist_807165907.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/ben/exhist_807165907.csv' DELIMITER ',' CSV HEADER;
 
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/justin/exhist_7470965-04.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/justin/exhist_7470965-04.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/justin/exhist_8075179-08.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/justin/exhist_8075179-08.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/justin/exhist_8746967-10.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Datasets/02-Exception/justin/exhist_8746967-10.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/justin/exhist_8075177-10.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/justin/exhist_8075177-10.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/justin/exhist_8097479-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/justin/exhist_8097479-03.csv' DELIMITER ',' CSV HEADER;
 
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/liliana/exhist_7489481-05.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/liliana/exhist_7489481-05.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/liliana/exhist_7951486-03.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/liliana/exhist_7951486-03.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/liliana/exhist_9470159-04.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM '/Datasets/02-Exception/liliana/exhist_9470159-04.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/liliana/exhist_7489482-06.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/liliana/exhist_7489482-06.csv' DELIMITER ',' CSV HEADER;
 
-\COPY public."Exception" (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Users/pankeshpatel/Desktop/bmw-material-planner-assistant/Datasets/02-Exception/liliana/exhist_8077652-06.csv' DELIMITER ',' CSV HEADER;
+\COPY public.exception (mandt,matnr,aline,cdate,ctime,dat00,delb0,extra,umdat,auskt,mng01,mng02,p_ingestday,p_ingesttime) FROM  '/Datasets/02-Exception/liliana/exhist_8077652-06.csv' DELIMITER ',' CSV HEADER;

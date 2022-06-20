@@ -181,6 +181,16 @@ Deploying server on AWS EC2
 	```
 
 
+### docker
+
+- `docker ps` # to get the container ID
+- `docker exec -it <container-id> psql -U postgres` # to get psql cli
+- `docker exec -it <container-id> sh`  # to get container command prompt
+- `docker-compose up`  # to run the container
+- `docker-compose up --build` # to build the container from the scratch 
+- `docker system prune`, `docker volume prune` to remove containers, volumes etc.
+
+
 
 
 
