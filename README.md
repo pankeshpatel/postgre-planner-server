@@ -1,47 +1,4 @@
-## backend
-
-### to create a virtual environment on mac
-
-```
-python3 -m venv venv
-// step to enable vitual environmant in vs code
-view -> command palette -> python:select interpreter -> ./venv/bin/python
-
-we also need to enable virtual environment in terminal
-source venv/bin/activate
-
-deactivate # to deactivate the virtial enevironment
-
-The virtual environment helps us to prepare `requirements.txt` file `pip freeze > requirements.txt`
-
-```
-
-### backend
-
-```
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-http://localhost:8000/docs
-```
-
-## frontend
-
-```
-cd frontend
-Install dependencies: `npm install` or `yarn`
-Start the server: `npm run dev` or `yarn dev`
-Views are on: `localhost:3000`
-
-```
-
-## data wrangling
-
-- MD04 data must be sorted according to the demand_date (oldest first)
-- demand_date field format must be in mm/dd/yy (e.g., 04/20/22).
-- the .csv file is in UTF-CSV format, Save the UTF-CSV file to .csv file
-
-### Deploying server on AWS EC2
+Deploying server on AWS EC2
 
 ### EC2 instance preparation
 
@@ -209,3 +166,13 @@ Views are on: `localhost:3000`
     sudo ufw delete allow 5432 # if you want to delete a rule
 
     ```
+
+### docker
+
+- `docker ps` # to get the container ID
+- `docker exec -it <container-id> psql -U postgres` # to get psql cli
+- `docker exec -it <container-id> sh` # to get container command prompt
+- `docker-compose up` # to run the container
+- `docker-compose up --build` # to build the container from the scratch
+- `docker system prune`, `docker volume prune` to remove containers, volumes etc.
+- `docker exec -it <container-id> redis-cli` # to get redis cli
