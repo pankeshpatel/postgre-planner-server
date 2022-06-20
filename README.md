@@ -176,3 +176,12 @@ Deploying server on AWS EC2
 - `docker-compose up --build` # to build the container from the scratch
 - `docker system prune`, `docker volume prune` to remove containers, volumes etc.
 - `docker exec -it <container-id> redis-cli` # to get redis cli
+
+### testing framework
+
+- `pip install pytest` # install pytest framework
+- `pytest` # to start with a test session and run a test
+- create a test repository `mkdir tests`,
+- create a python file for testing `sudo nano mytest.py`
+- `pytest -v` to test all functions in verbose mode.
+- to enable the auto-discovery, file and function name should be `test_*`
