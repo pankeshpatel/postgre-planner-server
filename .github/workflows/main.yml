@@ -14,6 +14,21 @@ jobs:
       ACCESS_TOKEN_EXPIRE_DAYS: 300
       REDIS_HOST: redis
       REDIS_PORT: 6379
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root123
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          -- health-cmd pg_isready
+          -- health-interval 10s
+          -- health-timeout 5s
+          -- health-retries 5
     runs-on: ubuntu-latest # This will tell the job to run on ubuntu machine
     steps:
       - name: running git repo
