@@ -2,6 +2,18 @@ name: Build and Deploy Code
 on: [push, pull_request]
 jobs:
   job1:
+    env:
+      # This is environment variable
+      DB_USER=postgres
+      DB_PASSWORD=root123
+      DB_HOST=postgres
+      DB_PORT=5432
+      DATABASE=postgres
+      SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      ALGORITHM=HS256
+      ACCESS_TOKEN_EXPIRE_DAYS=300
+      REDIS_HOST=redis
+      REDIS_PORT=6379
     runs-on: ubuntu-latest # This will tell the job to run on ubuntu machine
     steps:
       - name: running git repo
