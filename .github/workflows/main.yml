@@ -28,6 +28,16 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
+      redis:
+        image: redis #Docker hub image
+        options: >- #Set health checks to wait until redis has started
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
     steps:
       - name: running git repo
         uses: actions/checkout@v3 # from marketplace
