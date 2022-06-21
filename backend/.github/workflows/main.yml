@@ -69,11 +69,11 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: pankeshpatel/bmw:latest
-          cache-from: type=registry,ref=pankeshpatel/bmw:latest
-          cache-to: type=registry,ref=pankeshpatel/bmw:buildcache,mode=max
+          cache-from: type=local, src=/tmp/.buildx-cache
+          cache-to: type=registry,dest=/tmp/.buildx-cache
 
-      # - name: Image digest
-      #   run: echo ${{ steps.docker_build.outputs.diget }}
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.diget }}
 
       # - name: Build and push
       #   uses: docker/build-push-action@v2
