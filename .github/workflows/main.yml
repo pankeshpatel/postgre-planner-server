@@ -2,9 +2,7 @@ name: Build and Deploy Code
 on: [push, pull_request]
 jobs:
   job1:
-    env:
-      # This is environment variable
-      DB_USER=postgres
+    env: DB_USER=postgres
       DB_PASSWORD=root123
       DB_HOST=postgres
       DB_PORT=5432
