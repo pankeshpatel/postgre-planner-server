@@ -4,7 +4,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: running git repo
-      - uses: actions/checkout@v3
-      - run: say hi to Pankesh Patel
-      - run: echo "Pankesh Patel"
+      - name: running git repo
+        uses: actions/checkout@v3
+      - name: say hi to Pankesh Patel
+        run: echo "Pankesh Patel"
