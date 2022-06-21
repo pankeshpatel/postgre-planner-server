@@ -1,12 +1,10 @@
 name: Build and Deploy Code
-
-on: [push, pull_request]
-
+on: [push]
 jobs:
-  Job1:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - name: pulling git repo
-        uses: actions/checkout@v2
-      - name: say hi to pankesh
-        uses: echo "Pankesh Patel"
+      - name: running git repo
+        uses: actions/checkout@v3
+      - name: say Hi to Pankesh Patel
+        run: echo "Pankesh Patel"
