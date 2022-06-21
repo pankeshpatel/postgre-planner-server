@@ -66,7 +66,7 @@ jobs:
         with:
           context: .
           file: backend/Dockerfile
-          builder: $${{ steps.buildx.outputs.name }}
+          builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: pankeshpatel/bmw:latest
           cache-from: type=local,src=/tmp/.buildx-cache
