@@ -1,10 +1,7 @@
 name: Build and Deploy Code
-
-on: [push, pull_request]
-
+on: [push]
 jobs:
-  job1:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: say hi to pankesh
-        uses: echo "Pankesh Patel"
+      - run: echo "Pankesh Patel"
