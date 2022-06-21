@@ -58,7 +58,6 @@ jobs:
           password: 7e46e894-6132-4da1-83b7-bb6e757c7007
 
       - name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Build and push
