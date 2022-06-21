@@ -177,7 +177,7 @@ Deploying server on AWS EC2
 - `docker system prune`, `docker volume prune` to remove containers, volumes etc.
 - `docker exec -it <container-id> redis-cli` # to get redis cli
 
-### testing framework
+### testing framework (hello world)
 
 - `pip install pytest` # install pytest framework
 - `pytest` # to start with a test session and run a test
@@ -185,3 +185,7 @@ Deploying server on AWS EC2
 - create a python file for testing `sudo nano mytest.py`
 - `pytest -v` to test all functions in verbose mode.
 - to enable the auto-discovery, file and function name should be `test_*`
+
+### CI/CD pipeline
+
+- Github action doc: `https://docs.github.com/en/actions/quickstart`
